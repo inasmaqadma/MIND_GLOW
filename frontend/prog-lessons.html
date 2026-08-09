@@ -1,0 +1,616 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Programming Lessons</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #ffffff;
+            color: #333;
+        }
+
+        .page {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #E617B5;
+            margin-bottom: 25px;
+        }
+
+        .lessons-container {
+            display: flex;
+            gap: 25px;
+        }
+
+        .sidebar {
+            width: 280px;
+            border: 3px solid #E617B5;
+            border-radius: 20px;
+            padding: 15px;
+            background: white;
+        }
+
+        .sidebar h3 {
+            text-align: center;
+            color: #E617B5;
+        }
+
+        .lesson {
+            padding: 13px;
+            margin: 8px 0;
+            border-radius: 12px;
+            background: #f7f7f7;
+            border: 2px solid #ddd;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .lesson:hover {
+            background: #F4C6E7;
+            border-color: #E617B5;
+        }
+
+        .lesson.active {
+            background: #E617B5;
+            color: white;
+            border-color: #E617B5;
+        }
+
+        .lesson-content {
+            flex: 1;
+            border: 3px solid #E617B5;
+            border-radius: 20px;
+            padding: 30px;
+            min-height: 500px;
+        }
+
+        .lesson-number {
+            color: #777;
+            font-weight: bold;
+        }
+
+        .lesson-content h2 {
+            color: #E617B5;
+            font-size: 28px;
+        }
+
+        .description {
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .example-title {
+            color: #E617B5;
+            margin-top: 30px;
+        }
+
+        pre {
+            background: #171717;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+            font-size: 16px;
+        }
+
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: #E617B5;
+            color: white;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #c3149c;
+        }
+
+        .btn.secondary {
+            background: #333;
+        }
+
+        .output {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            background: #F4C6E7;
+            font-weight: bold;
+            display: none;
+        }
+
+        @media (max-width: 800px) {
+            .lessons-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <h1>💻 Programming Lessons</h1>
+
+    <div class="lessons-container">
+
+        <!-- قائمة الدروس -->
+        <div class="sidebar">
+
+            <h3>10 Lessons</h3>
+
+            <div class="lesson active" onclick="loadLesson(1)">
+                1. Introduction to Programming
+            </div>
+
+            <div class="lesson" onclick="loadLesson(2)">
+                2. Setting up Environment
+            </div>
+
+            <div class="lesson" onclick="loadLesson(3)">
+                3. Variables and Data Types
+            </div>
+
+            <div class="lesson" onclick="loadLesson(4)">
+                4. Operators
+            </div>
+
+            <div class="lesson" onclick="loadLesson(5)">
+                5. If Else Statements
+            </div>
+
+            <div class="lesson" onclick="loadLesson(6)">
+                6. For Loop
+            </div>
+
+            <div class="lesson" onclick="loadLesson(7)">
+                7. While Loop
+            </div>
+
+            <div class="lesson" onclick="loadLesson(8)">
+                8. Functions
+            </div>
+
+            <div class="lesson" onclick="loadLesson(9)">
+                9. Arrays
+            </div>
+
+            <div class="lesson" onclick="loadLesson(10)">
+                10. Objects
+            </div>
+
+        </div>
+
+
+        <!-- محتوى الدرس -->
+        <div class="lesson-content">
+
+            <div class="lesson-number" id="lessonNumber">
+                Lesson 1
+            </div>
+
+            <h2 id="lessonTitle">
+                Introduction to Programming
+            </h2>
+
+            <p class="description" id="lessonDescription">
+                Programming means giving instructions to a computer
+                so it can perform specific tasks.
+            </p>
+
+            <h3 class="example-title">
+                💻 Example
+            </h3>
+
+            <pre id="lessonCode">console.log("Hello World");</pre>
+
+            <div class="buttons">
+
+                <button class="btn" onclick="runExample()">
+                    ▶ Run Example
+                </button>
+
+                <button class="btn secondary" onclick="previousLesson()">
+                    ← Previous
+                </button>
+
+                <button class="btn" onclick="nextLesson()">
+                    Next Lesson →
+                </button>
+
+            </div>
+
+            <div class="output" id="output"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+var currentLesson = 1;
+
+
+/* =========================
+   بيانات الدروس
+========================= */
+
+var lessons = {
+
+    1: {
+        title: "Introduction to Programming",
+        description: "Programming means giving instructions to a computer so it can perform specific tasks.",
+        code: 'console.log("Hello World");',
+        output: "Hello World"
+    },
+
+    2: {
+        title: "Setting up Environment",
+        description: "Learn how to prepare your programming environment and use a code editor.",
+        code: 'console.log("Environment Ready");',
+        output: "Environment Ready"
+    },
+
+    3: {
+        title: "Variables and Data Types",
+        description: "Variables are used to store information such as text, numbers, and true or false values.",
+        code: 'let name = "Warda";\nlet age = 20;\nconsole.log(name);',
+        output: "Warda"
+    },
+
+    4: {
+        title: "Operators",
+        description: "Operators are used to perform calculations and compare values.",
+        code: 'let a = 10;\nlet b = 5;\nconsole.log(a + b);',
+        output: "15"
+    },
+
+    5: {
+        title: "If Else Statements",
+        description: "If and else statements allow a program to make decisions.",
+        code: 'let age = 20;\n\nif (age >= 18) {\n    console.log("Adult");\n} else {\n    console.log("Minor");\n}',
+        output: "Adult"
+    },
+
+    6: {
+        title: "For Loop",
+        description: "A for loop repeats a block of code a specific number of times.",
+        code: 'for (let i = 1; i <= 5; i++) {\n    console.log(i);\n}',
+        output: "1 2 3 4 5"
+    },
+
+    7: {
+        title: "While Loop",
+        description: "A while loop repeats code while a condition is true.",
+        code: 'let i = 1;\n\nwhile (i <= 3) {\n    console.log(i);\n    i++;\n}',
+        output: "1 2 3"
+    },
+
+    8: {
+        title: "Functions",
+        description: "Functions are reusable blocks of code that perform a specific task.",
+        code: 'function greet() {\n    console.log("Hello!");\n}\n\ngreet();',
+        output: "Hello!"
+    },
+
+    9: {
+        title: "Arrays",
+        description: "Arrays allow you to store multiple values inside one variable.",
+        code: 'let fruits = ["Apple", "Banana", "Orange"];\nconsole.log(fruits[0]);',
+        output: "Apple"
+    },
+
+    10: {
+        title: "Objects",
+        description: "Objects store information using properties and values.",
+        code: 'let student = {\n    name: "Warda",\n    age: 20\n};\n\nconsole.log(student.name);',
+        output: "Warda"
+    }
+
+};
+
+
+/* =========================
+   تحميل الدرس
+========================= */
+
+function loadLesson(number) {
+
+    currentLesson = number;
+
+    var lesson = lessons[number];
+
+    document.getElementById("lessonNumber").innerText =
+        "Lesson " + number;
+
+    document.getElementById("lessonTitle").innerText =
+        lesson.title;
+
+    document.getElementById("lessonDescription").innerText =
+        lesson.description;
+
+    document.getElementById("lessonCode").innerText =
+        lesson.code;
+
+    document.getElementById("output").style.display =
+        "none";
+
+
+    var lessonButtons =
+        document.querySelectorAll(".lesson");
+
+    for (var i = 0; i < lessonButtons.length; i++) {
+        lessonButtons[i].classList.remove("active");
+    }
+
+    lessonButtons[number - 1].classList.add("active");
+
+    localStorage.setItem(
+        "currentProgrammingLesson",
+        number
+    );
+}
+
+
+/* =========================
+   تشغيل المثال
+========================= */
+
+function runExample() {
+
+    var lesson = lessons[currentLesson];
+
+    var output =
+        document.getElementById("output");
+
+    output.innerText =
+        "Output: " + lesson.output;
+
+    output.style.display =
+        "block";
+}
+
+
+/* =========================
+   الدرس السابق
+========================= */
+
+function previousLesson() {
+
+    if (currentLesson > 1) {
+        loadLesson(currentLesson - 1);
+    }
+}
+
+
+/* =========================
+   الدرس التالي
+========================= */
+
+function nextLesson() {
+
+    if (currentLesson < 10) {
+        loadLesson(currentLesson + 1);
+    } else {
+        alert("You completed all 10 lessons!");
+    }
+}
+
+
+/* =========================
+   فتح آخر درس
+========================= */
+
+window.onload = function () {
+
+    var savedLesson =
+        localStorage.getItem("currentProgrammingLesson");
+
+    if (savedLesson) {
+        loadLesson(parseInt(savedLesson));
+    }
+
+};
+
+</script>
+<script>
+var currentLesson = 1;
+
+var lessons = {
+    1: {
+        title: "Introduction to Programming",
+        description: "Programming means giving instructions to a computer so it can perform specific tasks.",
+        code: 'console.log("Hello World");'
+    },
+    2: {
+        title: "Setting up Environment",
+        description: "Learn how to prepare your computer for programming and use a code editor.",
+        code: 'console.log("Environment Ready");'
+    },
+    3: {
+        title: "Variables and Data Types",
+        description: "Variables store information such as text, numbers and true or false values.",
+        code: 'let name = "Warda";\nlet age = 20;\nconsole.log(name);\nconsole.log(age);'
+    },
+    4: {
+        title: "Operators",
+        description: "Operators are used to perform calculations and compare values.",
+        code: 'let x = 5;\nlet y = 3;\nconsole.log(x + y);'
+    },
+    5: {
+        title: "If Else Statements",
+        description: "If and else statements allow a program to make decisions.",
+        code: 'let age = 20;\n\nif (age >= 18) {\n    console.log("Adult");\n} else {\n    console.log("Under 18");\n}'
+    },
+    6: {
+        title: "For Loop",
+        description: "A for loop repeats a block of code several times.",
+        code: 'for (let i = 1; i <= 5; i++) {\n    console.log(i);\n}'
+    },
+    7: {
+        title: "While Loop",
+        description: "A while loop repeats code while a condition is true.",
+        code: 'let i = 1;\n\nwhile (i <= 5) {\n    console.log(i);\n    i++;\n}'
+    },
+    8: {
+        title: "Functions",
+        description: "Functions allow us to create reusable blocks of code.",
+        code: 'function greet() {\n    console.log("Hello!");\n}\n\ngreet();'
+    },
+    9: {
+        title: "Arrays",
+        description: "Arrays are used to store multiple values in one variable.",
+        code: 'let fruits = ["Apple", "Banana", "Orange"];\nconsole.log(fruits[0]);'
+    },
+    10: {
+        title: "Objects",
+        description: "Objects store information using properties and values.",
+        code: 'let student = {\n    name: "Warda",\n    age: 20\n};\n\nconsole.log(student.name);'
+    }
+};
+
+
+function loadLesson(number) {
+
+    currentLesson = number;
+
+    var lesson = lessons[number];
+
+    if (!lesson) {
+        return;
+    }
+
+    document.getElementById("lessonNumber").innerText =
+        "Lesson " + number;
+
+    document.getElementById("lessonTitle").innerText =
+        lesson.title;
+
+    document.getElementById("lessonDescription").innerText =
+        lesson.description;
+
+    document.getElementById("lessonCode").innerText =
+        lesson.code;
+
+    document.getElementById("output").style.display = "none";
+
+    var lessonButtons = document.querySelectorAll(".lesson");
+
+    for (var i = 0; i < lessonButtons.length; i++) {
+        lessonButtons[i].classList.remove("active");
+    }
+
+    lessonButtons[number - 1].classList.add("active");
+}
+
+
+function nextLesson() {
+
+    if (currentLesson < 10) {
+
+        loadLesson(currentLesson + 1);
+
+    } else {
+
+        window.location.href = "prog-quiz.html";
+
+    }
+}
+
+
+function previousLesson() {
+
+    if (currentLesson > 1) {
+
+        loadLesson(currentLesson - 1);
+
+    }
+}
+
+
+function runExample() {
+
+    var output = document.getElementById("output");
+
+    output.style.display = "block";
+
+    if (currentLesson === 1) {
+        output.innerText = "Hello World";
+    }
+
+    else if (currentLesson === 2) {
+        output.innerText = "Environment Ready";
+    }
+
+    else if (currentLesson === 3) {
+        output.innerText = "Warda\n20";
+    }
+
+    else if (currentLesson === 4) {
+        output.innerText = "8";
+    }
+
+    else if (currentLesson === 5) {
+        output.innerText = "Adult";
+    }
+
+    else if (currentLesson === 6) {
+        output.innerText = "1\n2\n3\n4\n5";
+    }
+
+    else if (currentLesson === 7) {
+        output.innerText = "1\n2\n3\n4\n5";
+    }
+
+    else if (currentLesson === 8) {
+        output.innerText = "Hello!";
+    }
+
+    else if (currentLesson === 9) {
+        output.innerText = "Apple";
+    }
+
+    else if (currentLesson === 10) {
+        output.innerText = "Warda";
+    }
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

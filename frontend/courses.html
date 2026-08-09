@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Courses - MindGlow</title>
+<script>if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');</script>
+
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+    :root{ --pink: #581c87; --black: #130505; --light-pink: #FDF2F9; }
+    body { background: #FFFFFF; }
+    :root { 
+    --pink: #581c87; 
+    --light-pink: #FDF2F9; 
+    --bg: var(--light-pink); 
+    --text: #000; 
+    --card: #fff; 
+}
+body.dark { 
+    --bg: #121212; 
+    --text: #fff; 
+    --card: #1e1e1e; 
+}
+body { 
+    background: var(--bg); 
+    color: var(--text); 
+}
+
+
+    /* الشريط العلوي البنفسجي */
+    .topbar { 
+        background: var(--light-pink);
+        padding: 12px 30px; 
+        display: flex; 
+        justify-content: center;
+        gap: 15px;
+        border-bottom: 3px solid var(--pink);
+    }
+    .topbar a { 
+        background: var(--card); 
+        color: var(--black); 
+        padding: 8px 20px; 
+        border-radius: 25px; 
+        text-decoration: none; 
+        font-weight: bold; 
+        font-size: 13px;
+        border: 2px solid var(--pink);
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    .topbar a.active { background: var(--pink); color: white; }
+
+    /* الحاوية الرئيسية */
+    .main { display: flex; max-width: 1300px; margin: 20px auto; gap: 30px; padding: 0 20px; }
+    
+    /* الجزء الشمال */
+    .left-side { flex: 3; }
+    .welcome { 
+        color: var(--pink); 
+        font-size: 26px; 
+        font-weight: bold; 
+        font-style: italic;
+        margin-bottom: 5px;
+    }
+    .welcome span { font-size: 18px; }
+    .question { color: var(--pink); font-size: 16px; margin: 15px 0 5px 0; font-weight: 600; }
+    .please { color: #888; font-size: 14px; margin-bottom: 20px; }
+
+    /* شبكة الدوائر */
+    .subjects-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin-top: 20px;
+    }
+    .subject {
+        text-align: center;
+        cursor: pointer;
+    }
+    .subject-circle {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 4px solid var(--pink);
+        margin: 0 auto 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--card);
+        overflow: hidden;
+        transition: transform 0.3s;
+    }
+    .subject-circle:hover { transform: scale(1.1); }
+    .subject-circle img { width: 100px; height: 100px; object-fit: cover; }
+    .subject-name { font-weight: bold; color: var(--black); font-size: 14px; }
+
+    /* صورة الكتب واللمبة */
+    
+    .top-image img { width: 100%; }
+
+    /* البحث */
+    .search-box {
+        float: right;
+        border: 2px solid var(--pink);
+        border-radius: 25px;
+        padding: 5px 15px;
+        width: 250px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+    }
+    .search-box input { border: none; outline: none; flex: 1; background: transparent; }
+
+    /* الشريط الجانبي اليمين */
+    .sidebar { 
+        flex: 1; 
+        border: 3px solid var(--pink);
+        border-radius: 15px;
+        padding: 15px;
+        background: var(--card);
+        height: fit-content;
+    }
+    .side-btn {
+        background: var(--light-pink);
+        border: 2px solid var(--pink);
+        border-radius: 10px;
+        padding: 12px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration: none;
+        color: var(--black);
+    }
+    .side-btn:hover { background: var(--pink); color: white; }
+
+    /* الشريط السفلي */
+    .stats {
+        background: var(--black);
+        color: white;
+        border-radius: 50px;
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-around;
+        margin: 40px 20px 20px;
+        font-size: 13px;
+        font-weight: bold;
+    }
+    .stat-item { display: flex; align-items: center; gap: 8px; }
+    .stat-item .green { color: #4CAF50; }
+</style>
+</head>
+<body>
+
+    <!-- الشريط العلوي -->
+    <div class="topbar">
+        <a href="index.html">🏠 HOME</a>
+        <a href="courses.html" class="active">📚 COURSES</a>
+        <a href="settings.html">⚙️ SETTINGS</a>
+        <a href="contact.html">📞 CALL US</a>
+        <a href="dashboard.html">👤 ACCOUNT</a>
+    </div>
+
+    <!-- المحتوى -->
+    <div class="main">
+        <div class="left-side">
+            <div class="search-box">
+                <input type="text" placeholder="Search...">
+                🔍
+            </div>
+            
+
+            <h2 class="welcome">
+    Welcome <span id="courseStudentName"></span>! ⚙️
+</h2>
+            <p class="question">what the subject that you wanna to improve?</p>
+            <p class="please">Please choose</p>
+
+            <!-- شبكة المواد -->
+            <div class="subjects-grid">
+                <div class="subject">
+                    <a href="course-programing.html" style="text-decoration: none; color: var(--text);">
+                    <div class="subject-circle">
+                        <img src="images/programing.jpg" alt="Programming">
+                    </div>
+                    <p class="subject-name">PROGRAMMING</p>
+                    </a>
+                </div>
+
+             
+<div class="subject">
+    <a href="english-quiz.html" style="text-decoration: none; color: var(--text);">
+
+        <div class="subject-circle">
+            <img src="images/engllish.jpg" alt="English">
+        </div>
+
+        <p class="subject-name">ENGLISH</p>
+
+    </a>
+</div>
+
+
+
+
+               
+
+        <!-- الشريط الجانبي -->
+        <div class="sidebar">
+            <a href="dashboard.html" class="side-btn">📊 Dashboard</a>
+            <a href="courses.html" class="side-btn">📖 My Courses ❤️</a>
+            <a href="#" class="side-btn">📝 Quizzes</a>
+            <a href="contact.html" class="side-btn">💬 Messages</a>
+            <a href="#" class="side-btn">⏰ Calendar ❤️</a>
+            <a href="login.html" class="side-btn">🎯 levels</a>
+        </div>
+    </div>
+
+    <!-- الشريط السفلي -->
+    <div class="stats">
+        <div class="stat-item">👥 100K+ Students</div>
+        <div class="stat-item">📄 50+ Lessons</div>
+        <div class="stat-item">📋 30+ Subjects</div>
+        <div class="stat-item">👩‍🏫 800+ teacher</div>
+        <div class="stat-item"><span class="green">✓</span> 97% Satisfaction Rate</div>
+    </div>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    var firstname = localStorage.getItem("firstname");
+
+    var name = document.getElementById("courseStudentName");
+
+    if (name) {
+
+        if (firstname) {
+            name.innerHTML = firstname;
+        } else {
+            name.innerHTML = "Student";
+        }
+
+    }
+
+});
+</script>
+
+</body>
+</html>

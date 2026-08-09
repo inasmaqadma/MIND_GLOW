@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Site Settings</title>
+<script>if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');</script>
+<style>
+    :root { --pink: #581c87; --light-pink: #FDF2F9; --bg: var(--light-pink); --text: #000; --card: #fff; }
+    body.dark { --bg: #121212; --text: #fff; --card: #1e1e1e; }
+
+    body { font-family: Arial; background: var(--bg); color: var(--text); margin: 0; transition: 0.3s; }
+   .navbar { background: var(--card); padding: 15px 30px; display: flex; justify-content: space-between; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+   .nav-links { list-style: none; display: flex; gap: 20px; }
+   .nav-links a { text-decoration: none; color: var(--text); font-weight: bold; }
+   .nav-links a:hover { color: var(--pink); }
+
+   .container { max-width: 800px; margin: 30px auto; padding: 20px; }
+    h1 { color: var(--pink); }
+   .setting-section { background: var(--card); padding: 25px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+   .setting-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #ddd; }
+   .setting-row:last-child { border: none; }
+    select, .btn { padding: 8px 15px; border-radius: 8px; border: 1px solid #ccc; }
+   .btn { background: var(--pink); color: white; border: none; cursor: pointer; }
+
+   /* Toggle Switch */
+   .switch { position: relative; display: inline-block; width: 50px; height: 24px; }
+   .switch input { opacity: 0; width: 0; height: 0; }
+   .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #ccc; border-radius: 24px; transition: .4s; }
+   .slider:before { content: ""; position: absolute; height: 18px; width: 18px; left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: .4s; }
+    input:checked +.slider { background: var(--pink); }
+    input:checked +.slider:before { transform: translateX(26px); }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo" style="color: var(--pink); font-weight: bold;">My Courses</div>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="settings.html">Settings</a></li>
+        <li><a href="signup.html">Sign Up</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <h1>⚙️ Site Settings</h1>
+
+    <!-- 1. المظهر -->
+    <div class="setting-section">
+        <h2>Appearance</h2>
+        <div class="setting-row">
+            <div>
+                <h3>Dark Mode</h3>
+                <p>Change site theme to dark</p>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="darkToggle" onchange="toggleTheme()">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="setting-row">
+            <div>
+                <h3>Font Size</h3>
+                <p>Adjust text size for the whole site</p>
+            </div>
+            <select onchange="changeFontSize(this.value)">
+                <option value="14px">Small</option>
+                <option value="16px" selected>Medium</option>
+                <option value="18px">Large</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- 2. اللغة -->
+    <div class="setting-section">
+        <h2>Language & Region</h2>
+        <div class="setting-row">
+            <div>
+                <h3>Site Language</h3>
+                <p>Choose display language</p>
+            </div>
+            <select onchange="changeLanguage(this.value)">
+                <option value="en">English</option>
+                <option value="ar">العربية</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- 3. الاشعارات -->
+    <div class="setting-section">
+        <h2>Notifications</h2>
+        <div class="setting-row">
+            <div>
+                <h3>Email Alerts</h3>
+                <p>Get emails for new courses</p>
+            </div>
+            <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+        </div>
+        <div class="setting-row">
+            <div>
+                <h3>Push Notifications</h3>
+                <p>Browser notifications</p>
+            </div>
+            <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+        </div>
+    </div>
+
+    <!-- 4. الخصوصية -->
+    <div class="setting-section">
+        <h2>Privacy</h2>
+        <div class="setting-row">
+            <div>
+                <h3>Show My Activity</h3>
+                <p>Let others see what courses you take</p>
+            </div>
+            <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+        </div>
+        <div class="setting-row">
+            <div>
+                <h3>Clear Cache</h3>
+                <p>Delete saved site data</p>
+            </div>
+            <button class="btn" onclick="alert('Cache Cleared!')">Clear</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+// تحميل الاعدادات المحفوظة اول ما الصفحة تفتح
+window.onload = function(){
+    if(localStorage.getItem('theme') === 'dark'){
+        document.body.classList.add('dark');
+        document.getElementById('darkToggle').checked = true;
+    }
+    document.body.style.fontSize = localStorage.getItem('fontSize') || '16px';
+}
+
+function toggleTheme(){
+    document.body.classList.toggle('dark');
+    localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+}
+
+function changeFontSize(size){
+    document.body.style.fontSize = size;
+    localStorage.setItem('fontSize', size);
+}
+
+function changeLanguage(lang){
+    alert("Language changed to: " + (lang === 'ar' ? 'العربية' : 'English'));
+    localStorage.setItem('language', lang);
+    // بعدين بنقدر نغير كل النصوص حسب اللغة
+    
+function toggleTheme() {
+    document.body.classList.toggle("dark");
+}
+
+function changeFontSize(size) {
+    document.body.style.fontSize = size;
+}
+
+function changeLanguage(lang) {
+    alert("Language changed to: " + lang);
+}
+
+function clearCache() {
+    alert("Cache Cleared!");
+}
+
+}
+</script>
+
+</body>
+</html>

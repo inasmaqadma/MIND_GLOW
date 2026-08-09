@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Assignments - Programming</title>
+<link rel="stylesheet" href="style.css">
+<script>if(localStorage.getItem('theme') === 'dark') { document.body.classList.add('dark'); }</script>
+<style>
+.assignment-box { background: var(--card); padding: 25px; border-radius: 12px; margin: 20px 0; }
+.status { font-size: 14px; padding: 5px 12px; border-radius: 20px; float: left; }
+.status.pending { background: #ffc107; color: #000; }
+.status.done { background: #4CAF50; color: white; }
+textarea { width: 100%; padding: 12px; margin: 15px 0; border-radius: 8px; border: 1px solid #ccc; background: var(--bg); color: var(--text); font-family: inherit; min-height: 120px; }
+input[type="file"] { margin: 15px 0; color: var(--text); }
+.btn { background: var(--pink); color: white; border: none; padding: 12px 25px; border-radius: 8px; font-size: 16px; cursor: pointer; }
+.btn:disabled { background: gray; cursor: not-allowed; }
+</style>
+</head>
+<body>
+<nav class="navbar">
+    <div class="logo" style="color: var(--pink);">My Courses</div>
+    <ul class="nav-links">
+        <li><a href="course-programming.html">← Back</a></li>
+        <li><a href="courses.html">Courses</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <h1 style="color: var(--pink);">📝 Assignments</h1>
+
+    <!-- واجب 1 -->
+    <div class="assignment-box">
+        <span class="status pending" id="status1">Pending</span>
+        <h3>Assignment 1: Hello World</h3>
+        <p><b>Task:</b> Write a program that prints "Hello World" in any programming language.</p>
+        <textarea id="ans1" placeholder="Write your code here..."></textarea>
+        <input type="file" id="file1">
+        <button class="btn" onclick="submitAssignment(1)">Submit Assignment</button>
+    </div>
+
+    <!-- واجب 2 -->
+    <div class="assignment-box">
+        <span class="status pending" id="status2">Pending</span>
+        <h3>Assignment 2: Calculator</h3>
+        <p><b>Task:</b> Build a simple calculator with Add, Subtract, Multiply, Divide functions.</p>
+        <textarea id="ans2" placeholder="Paste your code or explain your logic..."></textarea>
+        <input type="file" id="file2">
+        <button class="btn" onclick="submitAssignment(2)">Submit Assignment</button>
+    </div>
+
+    <!-- واجب 3 -->
+    <div class="assignment-box">
+        <span class="status pending" id="status3">Pending</span>
+        <h3>Assignment 3: To-Do List</h3>
+        <p><b>Task:</b> Create a To-Do List app using HTML, CSS, and JavaScript.</p>
+        <textarea id="ans3" placeholder="Describe how you built it..."></textarea>
+        <input type="file" id="file3">
+        <button class="btn" onclick="submitAssignment(3)">Submit Assignment</button>
+    </div>
+</div>
+
+<script>
+// نحمل الحالة القديمة اول ما نفتح الصفحة
+window.onload = function() {
+    for(let i=1; i<=3; i++) {
+        if(localStorage.getItem('assignment' + i)) {
+            document.getElementById('status' + i).innerText = 'Submitted';
+            document.getElementById('status' + i).className = 'status done';
+            document.getElementById('ans' + i).value = localStorage.getItem('assignment' + i);
+            document.querySelectorAll('.btn')[i-1].innerText = 'Submitted';
+            document.querySelectorAll('.btn')[i-1].disabled = true;
+        }
+    }
+}
+
+// دالة التسليم
+function submitAssignment(num) {
+    let answer = document.getElementById('ans' + num).value;
+    let file = document.getElementById('file' + num).files[0];
+
+    if(answer == '' &&!file) {
+        alert('Please write your answer or upload a file first!');
+        return;
+    }
+
+    // نحفظ في المتصفح
+    localStorage.setItem('assignment' + num, answer);
+
+    // نغير الحالة
+    document.getElementById('status' + num).innerText = 'Submitted';
+    document.getElementById('status' + num).className = 'status done';
+    document.querySelectorAll('.btn')[num-1].innerText = 'Submitted ✓';
+    document.querySelectorAll('.btn')[num-1].disabled = true;
+
+    alert('Assignment ' + num + ' Submitted Successfully!');
+}
+</script>
+
+</body>
+</html>
