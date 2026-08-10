@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>CodeGlow - Contact Us</title>
+
+<!-- كل ال CSS هنا جوة الصفحة -->
+<style>
+    * {
+        margin: 0; 
+        padding: 0; 
+        box-sizing: border-box; 
+        font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    
+    body {
+        background: #fff; 
+        padding: 20px;
+    }
+
+    /* ===== NAVBAR نفس الهوم بالزبط ===== */
+    .navbar {
+        background: #130505;
+        border-radius: 25px;
+        padding: 8px 15px;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .navbar a {
+        text-decoration: none;
+    }
+    .navbar button {
+        background: #E617B5;
+        color: white;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 14px;
+        transition: 0.3s;
+    }
+    .navbar button:hover {
+        background: #c3149c;
+        transform: translateY(-2px);
+    }
+    .navbar button.active {
+        background: #c3149c;
+        box-shadow: 0 0 10px #E617B5;
+    }
+
+    .pink-bar {
+        background: #F4C6E7; 
+        height: 8px; 
+        border-radius: 10px; 
+        margin: 20px 0;
+    }
+
+    /* ===== محتوى الصفحة ===== */
+    h1 {
+        text-align: center; 
+        color: #E617B5; 
+        font-size: 36px; 
+        margin: 20px 0;
+        font-style: italic;
+    }
+    
+    .subtitle {
+        text-align: center; 
+        color: #666; 
+        font-size: 18px; 
+        margin-bottom: 40px;
+    }
+
+    .contact-container {
+        display: flex;
+        gap: 30px;
+        max-width: 1100px;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* ===== كرت المعلومات ===== */
+    .contact-info {
+        flex: 1;
+        min-width: 300px;
+        border: 4px solid #E617B5;
+        border-radius: 20px;
+        padding: 30px;
+        background: #fefefe;
+        box-shadow: 0 4px 15px rgba(230,23,181,0.1);
+    }
+    
+    .contact-info h2 {
+        color: #E617B5; 
+        margin-bottom: 20px; 
+        font-size: 24px;
+        border-bottom: 3px solid #F4C6E7;
+        padding-bottom: 10px;
+    }
+    
+    .info-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin: 20px 0;
+        font-size: 16px;
+        color: #333;
+    }
+    
+    .info-item .icon {
+        font-size: 30px;
+        background: #F4C6E7;
+        padding: 10px;
+        border-radius: 50%;
+    }
+
+    /* ===== فورم الارسال ===== */
+    .contact-form {
+        flex: 1;
+        min-width: 300px;
+        border: 4px solid #E617B5;
+        border-radius: 20px;
+        padding: 30px;
+        background: #fefefe;
+        box-shadow: 0 4px 15px rgba(230,23,181,0.1);
+    }
+    
+    .contact-form h2 {
+        color: #E617B5; 
+        margin-bottom: 20px; 
+        font-size: 24px;
+        border-bottom: 3px solid #F4C6E7;
+        padding-bottom: 10px;
+    }
+    
+    .contact-form input, 
+    .contact-form textarea {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border: 2px solid #F4C6E7;
+        border-radius: 10px;
+        font-size: 15px;
+        transition: 0.3s;
+    }
+    
+    .contact-form input:focus, 
+    .contact-form textarea:focus {
+        outline: none;
+        border-color: #E617B5;
+        box-shadow: 0 0 8px rgba(230,23,181,0.2);
+    }
+    
+    .contact-form button {
+        background: #E617B5;
+        color: white;
+        border: none;
+        padding: 14px 30px;
+        border-radius: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+        margin-top: 10px;
+        transition: 0.3s;
+    }
+    
+    .contact-form button:hover {
+        background: #c3149c;
+        transform: scale(1.02);
+    }
+
+    /* ===== Stats Footer - نفس الهوم ===== */
+    .stats {
+        background: #130505;
+        border-radius: 30px;
+        padding: 20px;
+        display: flex;
+        justify-content: space-around;
+        color: white;
+        margin-top: 50px;
+        text-align: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    
+    .stat b {
+        font-size: 22px; 
+        color: #E617B5;
+        display: block;
+    }
+</style>
+</head>
+
+<body>
+
+    <!-- NAVBAR مربوط كله -->
+    <div class="navbar">
+        <a href="index.html"><button>🏠 HOME</button></a>
+        <a href="courses.html"><button>📋 COURSES</button></a>
+        <a href="settings.html"><button>⚙️ SETTINGS</button></a>
+        <a href="contact.html"><button>📞 CALL US</button></a>
+        <a href="account.html"><button>👤 ACCOUNT</button></a>
+    </div>
+
+    <div class="pink-bar"></div>
+
+    <h1>Contact Us 📞</h1>
+    <p class="subtitle">We are here to help you 24/7</p>
+
+    <div class="contact-container">
+        
+        <!-- معلومات التواصل -->
+        <div class="contact-info">
+            <h2>Get In Touch</h2>
+            <div class="info-item">
+                <span class="icon">📍</span>
+                <div>
+                    <b>Address:</b><br>
+                    Gaza Strip, Palestine
+                </div>
+            </div>
+            <div class="info-item">
+                <span class="icon">📞</span>
+                <div>
+                    <b>Phone:</b><br>
+                    +970 59 123 4567
+                </div>
+            </div>
+            <div class="info-item">
+                <span class="icon">✉️</span>
+                <div>
+                    <b>Email:</b><br>
+                    support@mindglow.com
+                </div>
+            </div>
+            <div class="info-item">
+                <span class="icon">⏰</span>
+                <div>
+                    <b>Working Hours:</b><br>
+                    Sun - Thu: 9AM - 6PM
+                </div>
+            </div>
+        </div>
+
+        <!-- فورم الارسال -->
+        <form class="contact-form" action="contact.php" method="POST">
+            <h2>Send Message</h2>
+            <input type="text" name="name" placeholder="Your Name" required>
+           <input type="email" name="email" placeholder="Your Email" required>
+            <input type="text" name="subject" placeholder="Subject" required>
+            <<textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- Stats Footer -->
+    <div class="stats">
+        <div class="stat"><b>100K+</b>Students</div>
+        <div class="stat"><b>50+</b>Lessons</div>
+        < <div class="stat"><b>30+</b>Subjects</div>
+        <div class="stat"><b>800+</b>Teacher</div>
+        <div class="stat"><b>97%</b>Satisfaction Rate</div>
+    </div>
+
+</body>
+</html>

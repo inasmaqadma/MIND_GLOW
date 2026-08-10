@@ -1,0 +1,309 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Programming Quiz</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #ffffff;
+            color: #333;
+        }
+
+        .quiz-container {
+            max-width: 900px;
+            margin: 30px auto;
+        }
+
+        .quiz-title {
+            text-align: center;
+            color: #E617B5;
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        .quiz-box {
+            border: 3px solid #E617B5;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #ffffff;
+        }
+
+        .question {
+            font-size: 19px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .option {
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            padding: 12px 15px;
+            margin: 8px 0;
+            cursor: pointer;
+            transition: 0.3s;
+            background: #f8f8f8;
+        }
+
+        .option:hover {
+            background: #F4C6E7;
+            border-color: #E617B5;
+        }
+
+        .option.selected {
+            background: #E617B5;
+            color: white;
+            border-color: #E617B5;
+        }
+
+        .option.correct {
+            background: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+
+        .option.wrong {
+            background: #f44336;
+            color: white;
+            border-color: #f44336;
+        }
+
+        .btn {
+            display: block;
+            background: #E617B5;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 25px auto;
+        }
+
+        .btn:hover {
+            background: #c3149c;
+        }
+
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #E617B5;
+        }
+      .result.btn {
+       display: inline-block;
+      text-decoration: none;
+       }
+    </style>
+</head>
+
+<body>
+
+    <div class="quiz-container">
+
+        <h1 class="quiz-title">💻 Programming Quiz</h1>
+
+        <form id="quizForm">
+
+            <!-- Question 1 -->
+            <div class="quiz-box">
+                <div class="question">1. What does HTML stand for?</div>
+
+                <div class="option" data-q="1" data-a="a">
+                    A. Hyper Text Markup Language
+                </div>
+
+                <div class="option" data-q="1" data-a="b">
+                    B. High Tech Modern Language
+                </div>
+
+                <div class="option" data-q="1" data-a="c">
+                    C. Hyperlink and Text Markup Language
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="quiz-box">
+                <div class="question">2. Which tag makes text bold?</div>
+
+                <div class="option" data-q="2" data-a="a">
+                    A. &lt;p&gt;
+                </div>
+
+                <div class="option" data-q="2" data-a="b">
+                    B. &lt;b&gt;
+                </div>
+
+                <div class="option" data-q="2" data-a="c">
+                    C. &lt;bold&gt;
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="quiz-box">
+                <div class="question">3. What is used to style web pages?</div>
+
+                <div class="option" data-q="3" data-a="a">
+                    A. HTML
+                </div>
+
+                <div class="option" data-q="3" data-a="b">
+                    B. JavaScript
+                </div>
+
+                <div class="option" data-q="3" data-a="c">
+                    C. CSS
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="quiz-box">
+                <div class="question">4. Which keyword declares a variable in JS?</div>
+
+                <div class="option" data-q="4" data-a="a">
+                    A. var
+                </div>
+
+                <div class="option" data-q="4" data-a="b">
+                    B. variable
+                </div>
+
+                <div class="option" data-q="4" data-a="c">
+                    C. v
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="quiz-box">
+                <div class="question">5. How do you write a comment in JS?</div>
+
+                <div class="option" data-q="5" data-a="a">
+                    A. &lt;!-- comment --&gt;
+                </div>
+
+                <div class="option" data-q="5" data-a="b">
+                    B. // comment
+                </div>
+
+                <div class="option" data-q="5" data-a="c">
+                    C. # comment
+                </div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="quiz-box">
+                <div class="question">6. What is the output of: 5 + "5"?</div>
+
+                <div class="option" data-q="6" data-a="a">
+                    A. 10
+                </div>
+
+                <div class="option" data-q="6" data-a="b">
+                    B. 55
+                </div>
+
+                <div class="option" data-q="6" data-a="c">
+                    C. Error
+                </div>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="quiz-box">
+                <div class="question">7. Which loop runs at least once?</div>
+
+                <div class="option" data-q="7" data-a="a">
+                    A. for loop
+                </div>
+
+                <div class="option" data-q="7" data-a="b">
+                    B. while loop
+                </div>
+
+                <div class="option" data-q="7" data-a="c">
+                    C. do-while loop
+                </div>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="quiz-box">
+                <div class="question">8. How to create a function in JS?</div>
+
+                <div class="option" data-q="8" data-a="a">
+                    A. function myFunc()
+                </div>
+
+                <div class="option" data-q="8" data-a="b">
+                    B. def myFunc()
+                </div>
+
+                <div class="option" data-q="8" data-a="c">
+                    C. create myFunc()
+                </div>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="quiz-box">
+                <div class="question">9. What does CSS stand for?</div>
+
+                <div class="option" data-q="9" data-a="a">
+                    A. Computer Style Sheets
+                </div>
+
+                <div class="option" data-q="9" data-a="b">
+                    B. Cascading Style Sheets
+                </div>
+
+                <div class="option" data-q="9" data-a="c">
+                    C. Creative Style System
+                </div>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="quiz-box">
+                <div class="question">10. Which is NOT a data type in JS?</div>
+
+                <div class="option" data-q="10" data-a="a">
+                    A. String
+                </div>
+
+                <div class="option" data-q="10" data-a="b">
+                    B. Boolean
+                </div>
+
+                <div class="option" data-q="10" data-a="c">
+                    C. Float
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <button type="button" class="btn" onclick="checkQuiz()">
+                Submit Quiz
+            </button>
+
+            <!-- Result -->
+            <div class="result" id="result"></div>
+
+        </form>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
+
